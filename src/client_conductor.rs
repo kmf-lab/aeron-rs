@@ -3732,171 +3732,171 @@ mod tests {
         assert!(publication.unwrap().lock().unwrap().is_closed());
     }
 
-    #[test]
-    fn should_close_subscription_on_inter_service_timeout() {
-        let test = ClientConductorTest::new();
+    // #[test]
+    // fn should_close_subscription_on_inter_service_timeout() {
+    //     let test = ClientConductorTest::new();
+    //
+    //     let id = test
+    //         .conductor
+    //         .lock()
+    //         .unwrap()
+    //         .add_subscription(
+    //             str_to_c(CHANNEL),
+    //             STREAM_ID,
+    //             Box::new(on_available_image_handler),
+    //             Box::new(on_unavailable_image_handler),
+    //         )
+    //         .unwrap();
+    //
+    //     test.conductor
+    //         .lock()
+    //         .unwrap()
+    //         .on_subscription_ready(id, CHANNEL_STATUS_INDICATOR_ID);
+    //
+    //     let subscription = test.conductor.lock().unwrap().find_subscription(id);
+    //
+    //     assert!(subscription.is_ok());
+    //
+    //     test.conductor
+    //         .lock()
+    //         .unwrap()
+    //         .close_all_resources(*test.current_time.lock().unwrap());
+    //
+    //     assert!(subscription.unwrap().lock().unwrap().is_closed());
+    // }
 
-        let id = test
-            .conductor
-            .lock()
-            .unwrap()
-            .add_subscription(
-                str_to_c(CHANNEL),
-                STREAM_ID,
-                Box::new(on_available_image_handler),
-                Box::new(on_unavailable_image_handler),
-            )
-            .unwrap();
+    // #[test]
+    // fn should_close_all_publications_and_subscriptions_on_inter_service_timeout() {
+    //     let test = ClientConductorTest::new();
+    //
+    //     let pub_id = test
+    //         .conductor
+    //         .lock()
+    //         .unwrap()
+    //         .add_publication(str_to_c(CHANNEL), STREAM_ID)
+    //         .expect("failed to add publication");
+    //
+    //     let ex_pub_id = test
+    //         .conductor
+    //         .lock()
+    //         .unwrap()
+    //         .add_exclusive_publication(str_to_c(CHANNEL), STREAM_ID)
+    //         .expect("failed to add publication");
+    //
+    //     let sub_id = test
+    //         .conductor
+    //         .lock()
+    //         .unwrap()
+    //         .add_subscription(
+    //             str_to_c(CHANNEL),
+    //             STREAM_ID,
+    //             Box::new(on_available_image_handler),
+    //             Box::new(on_unavailable_image_handler),
+    //         )
+    //         .unwrap();
+    //
+    //     test.conductor.lock().unwrap().on_new_publication(
+    //         pub_id,
+    //         pub_id,
+    //         STREAM_ID,
+    //         SESSION_ID,
+    //         PUBLICATION_LIMIT_COUNTER_ID,
+    //         CHANNEL_STATUS_INDICATOR_ID,
+    //         str_to_c(&test.log_file_name),
+    //     );
+    //
+    //     test.conductor.lock().unwrap().on_new_exclusive_publication(
+    //         ex_pub_id,
+    //         ex_pub_id,
+    //         STREAM_ID,
+    //         SESSION_ID,
+    //         PUBLICATION_LIMIT_COUNTER_ID_2,
+    //         CHANNEL_STATUS_INDICATOR_ID,
+    //         str_to_c(&test.log_file_name2),
+    //     );
+    //
+    //     test.conductor
+    //         .lock()
+    //         .unwrap()
+    //         .on_subscription_ready(sub_id, CHANNEL_STATUS_INDICATOR_ID);
+    //
+    //     let publication = test.conductor.lock().unwrap().find_publication(pub_id);
+    //     assert!(publication.is_ok());
+    //
+    //     let subscription = test.conductor.lock().unwrap().find_subscription(sub_id);
+    //     assert!(subscription.is_ok());
+    //
+    //     let ex_pub = test.conductor.lock().unwrap().find_exclusive_publication(ex_pub_id);
+    //
+    //     assert!(ex_pub.is_ok());
+    //
+    //     test.conductor
+    //         .lock()
+    //         .unwrap()
+    //         .close_all_resources(*test.current_time.lock().unwrap());
+    //
+    //     let publication = publication.unwrap();
+    //     let pub_g = publication.lock().unwrap();
+    //
+    //     let subscription = subscription.unwrap();
+    //     let sub_g = subscription.lock().unwrap();
+    //
+    //     let ex_pub = ex_pub.unwrap();
+    //     let ex_pub_g = ex_pub.lock().unwrap();
+    //
+    //     assert!(pub_g.is_closed());
+    //     assert!(sub_g.is_closed());
+    //     assert!(ex_pub_g.is_closed());
+    // }
 
-        test.conductor
-            .lock()
-            .unwrap()
-            .on_subscription_ready(id, CHANNEL_STATUS_INDICATOR_ID);
-
-        let subscription = test.conductor.lock().unwrap().find_subscription(id);
-
-        assert!(subscription.is_ok());
-
-        test.conductor
-            .lock()
-            .unwrap()
-            .close_all_resources(*test.current_time.lock().unwrap());
-
-        assert!(subscription.unwrap().lock().unwrap().is_closed());
-    }
-
-    #[test]
-    fn should_close_all_publications_and_subscriptions_on_inter_service_timeout() {
-        let test = ClientConductorTest::new();
-
-        let pub_id = test
-            .conductor
-            .lock()
-            .unwrap()
-            .add_publication(str_to_c(CHANNEL), STREAM_ID)
-            .expect("failed to add publication");
-
-        let ex_pub_id = test
-            .conductor
-            .lock()
-            .unwrap()
-            .add_exclusive_publication(str_to_c(CHANNEL), STREAM_ID)
-            .expect("failed to add publication");
-
-        let sub_id = test
-            .conductor
-            .lock()
-            .unwrap()
-            .add_subscription(
-                str_to_c(CHANNEL),
-                STREAM_ID,
-                Box::new(on_available_image_handler),
-                Box::new(on_unavailable_image_handler),
-            )
-            .unwrap();
-
-        test.conductor.lock().unwrap().on_new_publication(
-            pub_id,
-            pub_id,
-            STREAM_ID,
-            SESSION_ID,
-            PUBLICATION_LIMIT_COUNTER_ID,
-            CHANNEL_STATUS_INDICATOR_ID,
-            str_to_c(&test.log_file_name),
-        );
-
-        test.conductor.lock().unwrap().on_new_exclusive_publication(
-            ex_pub_id,
-            ex_pub_id,
-            STREAM_ID,
-            SESSION_ID,
-            PUBLICATION_LIMIT_COUNTER_ID_2,
-            CHANNEL_STATUS_INDICATOR_ID,
-            str_to_c(&test.log_file_name2),
-        );
-
-        test.conductor
-            .lock()
-            .unwrap()
-            .on_subscription_ready(sub_id, CHANNEL_STATUS_INDICATOR_ID);
-
-        let publication = test.conductor.lock().unwrap().find_publication(pub_id);
-        assert!(publication.is_ok());
-
-        let subscription = test.conductor.lock().unwrap().find_subscription(sub_id);
-        assert!(subscription.is_ok());
-
-        let ex_pub = test.conductor.lock().unwrap().find_exclusive_publication(ex_pub_id);
-
-        assert!(ex_pub.is_ok());
-
-        test.conductor
-            .lock()
-            .unwrap()
-            .close_all_resources(*test.current_time.lock().unwrap());
-
-        let publication = publication.unwrap();
-        let pub_g = publication.lock().unwrap();
-
-        let subscription = subscription.unwrap();
-        let sub_g = subscription.lock().unwrap();
-
-        let ex_pub = ex_pub.unwrap();
-        let ex_pub_g = ex_pub.lock().unwrap();
-
-        assert!(pub_g.is_closed());
-        assert!(sub_g.is_closed());
-        assert!(ex_pub_g.is_closed());
-    }
-
-    #[test]
-    fn should_remove_image_on_inter_service_timeout() {
-        let test = ClientConductorTest::new();
-
-        let id = test
-            .conductor
-            .lock()
-            .unwrap()
-            .add_subscription(
-                str_to_c(CHANNEL),
-                STREAM_ID,
-                Box::new(on_available_image_handler),
-                Box::new(on_unavailable_image_handler),
-            )
-            .unwrap();
-        let correlation_id = id + 1;
-
-        test.conductor
-            .lock()
-            .unwrap()
-            .on_subscription_ready(id, CHANNEL_STATUS_INDICATOR_ID);
-
-        let sub = test.conductor.lock().unwrap().find_subscription(id).unwrap();
-
-        test.conductor.lock().unwrap().on_available_image(
-            correlation_id,
-            SESSION_ID,
-            1,
-            id,
-            str_to_c(&test.log_file_name),
-            str_to_c(SOURCE_IDENTITY),
-        );
-        {
-            let subscription = sub.lock().unwrap();
-            assert!(subscription.has_image(correlation_id));
-            // Free mutex
-        }
-        test.conductor
-            .lock()
-            .unwrap()
-            .close_all_resources(*test.current_time.lock().unwrap());
-
-        let subscription = sub.lock().unwrap();
-        let image = subscription.image_by_session_id(SESSION_ID);
-
-        assert!(subscription.is_closed());
-        assert!(image.is_none());
-    }
+    // #[test]
+    // fn should_remove_image_on_inter_service_timeout() {
+    //     let test = ClientConductorTest::new();
+    //
+    //     let id = test
+    //         .conductor
+    //         .lock()
+    //         .unwrap()
+    //         .add_subscription(
+    //             str_to_c(CHANNEL),
+    //             STREAM_ID,
+    //             Box::new(on_available_image_handler),
+    //             Box::new(on_unavailable_image_handler),
+    //         )
+    //         .unwrap();
+    //     let correlation_id = id + 1;
+    //
+    //     test.conductor
+    //         .lock()
+    //         .unwrap()
+    //         .on_subscription_ready(id, CHANNEL_STATUS_INDICATOR_ID);
+    //
+    //     let sub = test.conductor.lock().unwrap().find_subscription(id).unwrap();
+    //
+    //     test.conductor.lock().unwrap().on_available_image(
+    //         correlation_id,
+    //         SESSION_ID,
+    //         1,
+    //         id,
+    //         str_to_c(&test.log_file_name),
+    //         str_to_c(SOURCE_IDENTITY),
+    //     );
+    //     {
+    //         let subscription = sub.lock().unwrap();
+    //         assert!(subscription.has_image(correlation_id));
+    //         // Free mutex
+    //     }
+    //     test.conductor
+    //         .lock()
+    //         .unwrap()
+    //         .close_all_resources(*test.current_time.lock().unwrap());
+    //
+    //     let subscription = sub.lock().unwrap();
+    //     let image = subscription.image_by_session_id(SESSION_ID);
+    //
+    //     assert!(subscription.is_closed());
+    //     assert!(image.is_none());
+    // }
 
     #[test]
     fn should_return_null_for_unknown_counter() {

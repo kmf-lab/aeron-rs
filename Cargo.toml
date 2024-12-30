@@ -1,6 +1,6 @@
 [package]
 name = "steady_state_aeron"
-version = "0.1.6"
+version = "0.1.6-kmf1"
 authors = ["Denis Komissarov <denisxor@gmail.com>", "Kirill Karbushev <kiriosk@yandex.ru>", "Alexander Ostrovskiy <alexander.ostrovskiy@gmail.com>", "Nathan Tippy <nathan.tippy@gmail.com>"]
 license = "Apache-2.0"
 description = "Aeron client library - fast messaging over UDP on Rust (fork for immediate patches)"
