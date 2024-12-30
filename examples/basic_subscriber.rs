@@ -18,16 +18,16 @@ use std::ffi::CString;
 use std::slice;
 use std::sync::atomic::{AtomicBool, AtomicI64, Ordering};
 
-use aeron_rs::aeron::Aeron;
-use aeron_rs::concurrent::atomic_buffer::AtomicBuffer;
-use aeron_rs::concurrent::logbuffer::header::Header;
-use aeron_rs::concurrent::status::status_indicator_reader::channel_status_to_str;
-use aeron_rs::concurrent::strategies::{SleepingIdleStrategy, Strategy};
-use aeron_rs::context::Context;
-use aeron_rs::example_config::{DEFAULT_CHANNEL, DEFAULT_STREAM_ID};
-use aeron_rs::image::Image;
-use aeron_rs::utils::errors::AeronError;
-use aeron_rs::utils::types::Index;
+use steady_state_aeron::aeron::Aeron;
+use steady_state_aeron::concurrent::atomic_buffer::AtomicBuffer;
+use steady_state_aeron::concurrent::logbuffer::header::Header;
+use steady_state_aeron::concurrent::status::status_indicator_reader::channel_status_to_str;
+use steady_state_aeron::concurrent::strategies::{SleepingIdleStrategy, Strategy};
+use steady_state_aeron::context::Context;
+use steady_state_aeron::example_config::{DEFAULT_CHANNEL, DEFAULT_STREAM_ID};
+use steady_state_aeron::image::Image;
+use steady_state_aeron::utils::errors::AeronError;
+use steady_state_aeron::utils::types::Index;
 use lazy_static::lazy_static;
 
 lazy_static! {

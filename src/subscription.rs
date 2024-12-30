@@ -232,7 +232,7 @@ impl Subscription {
      */
     pub fn controlled_poll(
         &mut self,
-        fragment_handler: impl FnMut(&AtomicBuffer, Index, Index, &Header) -> Result<ControlledPollAction, AeronError> + Copy,
+        mut fragment_handler: impl FnMut(&AtomicBuffer, Index, Index, &Header) -> Result<ControlledPollAction, AeronError>,
         fragment_limit: i32,
     ) -> i32 {
         let image_list = self.image_list.load_mut();
@@ -252,7 +252,7 @@ impl Subscription {
                 fragments_read += image_list
                     .get_mut(i)
                     .expect("Error getting element from Image vec")
-                    .controlled_poll(fragment_handler, fragment_limit - fragments_read);
+                    .controlled_poll(&mut fragment_handler, fragment_limit - fragments_read);
             }
         }
 
@@ -261,7 +261,7 @@ impl Subscription {
                 fragments_read += image_list
                     .get_mut(i)
                     .expect("Error getting element from Image vec")
-                    .controlled_poll(fragment_handler, fragment_limit - fragments_read);
+                    .controlled_poll(&mut fragment_handler, fragment_limit - fragments_read);
             }
         }
 

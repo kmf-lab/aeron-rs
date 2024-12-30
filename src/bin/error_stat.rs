@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-use aeron_rs::cnc_file_descriptor::{self, CNC_FILE, CNC_VERSION};
-use aeron_rs::context::Context;
-use aeron_rs::utils::errors::error_log_reader;
-use aeron_rs::utils::memory_mapped_file::MemoryMappedFile;
-use aeron_rs::utils::misc::{semantic_version_major, semantic_version_to_string};
+use steady_state_aeron::cnc_file_descriptor::{self, CNC_FILE, CNC_VERSION};
+use steady_state_aeron::context::Context;
+use steady_state_aeron::utils::errors::error_log_reader;
+use steady_state_aeron::utils::memory_mapped_file::MemoryMappedFile;
+use steady_state_aeron::utils::misc::{semantic_version_major, semantic_version_to_string};
 use chrono::{Local, TimeZone};
 
 struct CmdOpts {

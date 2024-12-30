@@ -19,20 +19,20 @@ use std::sync::atomic::{AtomicBool, AtomicI64, Ordering};
 use std::sync::{Arc, Mutex};
 use std::time::{Duration, Instant};
 
-use aeron_rs::aeron::Aeron;
-use aeron_rs::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
-use aeron_rs::concurrent::logbuffer::header::Header;
-use aeron_rs::concurrent::strategies::{BusySpinIdleStrategy, Strategy};
-use aeron_rs::context::Context;
-use aeron_rs::example_config::{
+use steady_state_aeron::aeron::Aeron;
+use steady_state_aeron::concurrent::atomic_buffer::{AlignedBuffer, AtomicBuffer};
+use steady_state_aeron::concurrent::logbuffer::header::Header;
+use steady_state_aeron::concurrent::strategies::{BusySpinIdleStrategy, Strategy};
+use steady_state_aeron::context::Context;
+use steady_state_aeron::example_config::{
     DEFAULT_FRAGMENT_COUNT_LIMIT, DEFAULT_MESSAGE_LENGTH, DEFAULT_PING_CHANNEL, DEFAULT_PING_STREAM_ID,
 };
-use aeron_rs::fragment_assembler::FragmentAssembler;
-use aeron_rs::image::Image;
-use aeron_rs::publication::Publication;
-use aeron_rs::subscription::Subscription;
-use aeron_rs::utils::errors::AeronError;
-use aeron_rs::utils::types::Index;
+use steady_state_aeron::fragment_assembler::FragmentAssembler;
+use steady_state_aeron::image::Image;
+use steady_state_aeron::publication::Publication;
+use steady_state_aeron::subscription::Subscription;
+use steady_state_aeron::utils::errors::AeronError;
+use steady_state_aeron::utils::types::Index;
 use clap::Parser;
 use hdrhistogram::Histogram;
 use lazy_static::lazy_static;
